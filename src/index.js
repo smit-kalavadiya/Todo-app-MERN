@@ -1,16 +1,15 @@
 const express = require('express');
 require('dotenv').config();
 const {databaseConnection} = require('./db/database');
-
+const userRouter = require('./routes/userRouter')
 
 const app = express();
 app.use(express.json())
 
-databaseConnection();
+//Routers
+app.use("/api/user",userRouter);
 
-app.post('/register', function (req, res) {
-    res.send(req.body);
-  });
-  
+
+databaseConnection();  
 app.listen(process.env.PORT || 3000);
 
