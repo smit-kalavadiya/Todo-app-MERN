@@ -3,6 +3,8 @@ require('dotenv').config();
 const {databaseConnection} = require('./db/database');
 
 const app = express();
+app.use(bodyParser.json());
+
 
 databaseConnection();
 
