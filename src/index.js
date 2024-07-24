@@ -8,8 +8,8 @@ app.use(express.json())
 
 databaseConnection();
 
-app.get('/', function (req, res) {
-    res.send("Hello World");
+app.post('/register', function (req, res) {
+    res.send(req.body);
   });
   
 app.listen(process.env.PORT || 3000);
