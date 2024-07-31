@@ -35,11 +35,11 @@ userSchema.pre("save", async function(next){
 })
 
 userSchema.methods.generateAcessToken = function(){
-
+    
 }
 
 userSchema.methods.generateRefreshToken = function(){
-
+    
 }
 
 module.exports = mongoose.model('User',userSchema);
