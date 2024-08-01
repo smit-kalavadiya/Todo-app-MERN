@@ -1,14 +1,15 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const userSchema = require("../models/user.model");
-const {userAuthentication} = require("../middlewares/userauth.middlewares");
-const {userLogin,userRegister} = require("../controllers/user.controller");
 const router = express.Router();
+
+const {userAuthentication} = require("../middlewares/userauth.middlewares");
+const {userLogin,userRegister,userProfile} = require("../controllers/user.controller");
+
 
 // Define a route
 router.post("/register",userRegister)
 
-router.post("/login",userAuthentication,userLogin)
+router.post("/login",userLogin)
+
+router.post("/profile",userAuthentication,userProfile)
 
 module.exports = router;

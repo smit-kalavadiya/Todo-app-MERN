@@ -1,6 +1,24 @@
-const userAuthentication=(res,req,next)=>{
-    console.log("From User Auth");
-    next();
-}
+const jwt = require("jsonwebtoken");
 
-module.exports = {userAuthentication}
+const userAuthentication = (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+
+    const tokensplit = token.split(" ")[1];
+
+    const tokenverfied = jwt.verify(
+      tokensplit,
+      process.env.JWT_TOKEN_SECRETKEY
+    );
+
+    req.user = {
+      _id: tokenverfied._id,
+    };
+
+    next();
+  } catch (error) {
+    res.status(401).json("User not Authorized")
+  } 
+};
+
+module.exports = { userAuthentication };
